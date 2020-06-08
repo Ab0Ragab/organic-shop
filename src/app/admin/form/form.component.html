@@ -1,0 +1,74 @@
+<div class="container">
+   <h2 style="margin-top: 15px;">Add New Product</h2> 
+   <div class="row">
+       <div class="col-md-6">
+        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+            <!---- <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="productService.selectedProduct.$key"> -->
+            <div class="form-group">
+                <label class="label"><strong>Title</strong></label>
+                <input class="form-control" name="title" #title="ngModel" [(ngModel)]="productService.selectedProduct.title" placeholder="Enter product title"
+                   #title="ngModel" required>
+                    <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+                        Title is required.
+                    </div>    
+                <!-- #name is a local reference for an input model -->
+            </div>
+             
+            <div class="form-group">
+                <label class="label"><strong>Price</strong></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                  <input class="form-control" type="number" name="price" #price="ngModel" [(ngModel)]="productService.selectedProduct.price" placeholder="Enter product price"
+                  #price="ngModel" [min]="0" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+                    <div *ngIf="price.errors.required">Price is required.</div>
+                    <div *ngIf="price.errors.min">Price should be 0 or higher.</div>
+                </div>
+            </div>
+            
+
+            <div class="form-group">
+                <label class="label"><strong>Category</strong></label>
+                <select class="form-control" type="text" name="category" #category="ngModel" [(ngModel)]="productService.selectedProduct.category" required #category="ngModel">
+                    <option value=""></option>
+                    <option *ngFor="let c of categories$ | async" [value]="c.name">
+                      {{ c.name }}
+                    </option>
+                </select>
+                <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+                    Category is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="label"><strong>ImgUrl</strong></label>
+                <input class="form-control" type="text" name="imgUrl" #imgUrl="ngModel" [(ngModel)]="productService.selectedProduct.imgUrl" placeholder="Enter product imgUrl"
+                required url>
+
+                <div class="alert alert-danger" *ngIf="imgUrl.touched && imgUrl.invalid">
+                    <div *ngIf="imgUrl.errors.required">ImgUrl is required.</div>
+                    <div *ngIf="imgUrl.errors.url">ImgUrl is invalid.</div>
+                </div>
+
+            </div>
+        
+            <div class="form-group">
+                <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Submit</button>
+                <button type="button" class="btn btn-danger" *ngIf="productForm.valid" (click)="onDelete(productForm)">
+                    <i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                <button type="button" class="btn btn-info" (click)="resetForm()">
+                    <i class="fa fa-repeat" aria-hidden="true"></i> Reset</button>
+            </div>
+        </form>
+       </div>
+
+       <div class="col-md-6">
+          <app-admin-products></app-admin-products>
+       </div>
+   </div> 
+</div>
+
+

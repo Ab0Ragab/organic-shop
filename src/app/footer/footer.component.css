@@ -1,0 +1,20 @@
+.footer
+{
+    background-color: black;
+    text-align: center;
+    color: yellow;
+    padding: 10px;
+    margin-top: 60px;
+}
+.fa
+{
+    margin-left: 15px;
+}
+.fa:hover
+{
+    cursor: pointer;
+}
+.fa-facebook-square:hover { color:  #3b5998; }
+.fa-twitter-square:hover { color: #38A1F3; }
+.fa-instagram:hover { color: #3f729b; }
+.fa-envelope:hover { color:  #b23121; }

@@ -1,0 +1,23 @@
+.o
+{
+    color: yellow;
+    font-weight: bold;
+}
+.dropdown-menu {
+    background: black;
+    border: 1px solid yellow;
+}
+.dropdown-menu .b{
+    color: white;
+}
+.dropdown-menu .b:hover{
+    color: black;
+}
+.fa
+{
+    color: yellow;
+}
+.badge
+{
+    margin-left: 2px;
+}

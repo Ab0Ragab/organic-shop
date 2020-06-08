@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" routerLink="/"><span class="o">O</span>shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarsExample05">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="shopping-cart">
+            <i class="fa fa-shopping-cart fa-lg"></i>
+            <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">
+              {{ cart.totalItemsCount }}
+            </span>
+          </a>
+        </li>
+        <ng-template #anoymousUser>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login <i class="fa fa-sign-in fa-lg"></i></a>
+        </li>
+        </ng-template>
+        <div ngbDropdown class="d-inline-block" *ngIf="appUser; else anoymousUser">
+            <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                {{ appUser.name }}
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              
+              <ng-container *ngIf="appUser.isAdmin">
+                
+                <button ngbDropdownItem routerLink="/admin/products" class="b">Manage Products</button>
+              </ng-container>
+              <button ngbDropdownItem routerLink="/" (click)="logOut()" class="b">Log Out <i class="fa fa-sign-out fa-lg"></i></button>
+            </div>
+          </div>
+      </ul>
+    </div>
+  </nav>
+
+  
